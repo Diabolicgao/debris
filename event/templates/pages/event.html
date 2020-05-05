@@ -1,0 +1,109 @@
+{% extends 'pages/header.html' %}
+{% load static %}
+{% block title %} Event {% endblock %}
+{% block link %} 
+	
+{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block content %} 
+    <!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+				<div class="col-md-4">
+					<!-- ad widget-->
+					<!-- <div class="aside-widget text-center">
+						<a href="#" style="display: inline-block;margin: auto;">
+							<img class="img-responsive" src="{% static './img/ad-3.jpg' %}" alt="">
+						</a>
+					</div> -->
+					<!-- /ad widget -->
+
+					<!-- category widget -->
+					<div class="aside-widget">
+						<div class="section-title">
+							<h2 class="title">Tất cả</h2>
+						</div>
+						<div class="category-widget">
+							<ul>
+								<li><a href="{% url 'event' %}">Event <span></span></a></li>
+								<li><a href="{% url 'notify' %}">Thông báo <span></span></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /category widget -->
+
+					<!-- Ad widget -->
+					<!-- <div class="aside-widget text-center">
+						<a href="#" style="display: inline-block;margin: auto;">
+							<img class="img-responsive" src="{% static './img/ad-1.jpg' %}" alt="">
+						</a>
+					</div> -->
+					<!-- /Ad widget -->
+				</div>
+				
+				<div class="col-md-8">
+					<div class="row">
+						{% for obj in Obj %}
+							<!-- post -->
+							<div class="col-md-4">
+								<div class="post">
+									<a class="post-img" href="/event/{{obj.pk}}"><img src="{{obj.image.url}}" alt=""></a>
+									<div class="post-body">
+										<div class="post-category">
+											<a href="/event/{{obj.category}}">{{obj.category}}</a>
+										</div>
+										<h3 class="post-title"><a href="/event/{{obj.pk}}">{{obj.title}}</a></h3>
+										<ul class="post-meta">
+											<li>{{obj.time|date:"d-m-Y"}}</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- /post -->
+							<!-- <div class="clearfix visible-md visible-lg"></div> -->
+						{% endfor %}
+					</div>
+
+					<div class="section-row loadmore text-center">
+						{% if Data.has_other_pages %}
+							<ul class="pagination">
+								{% if Data.has_previous %}
+									<a class="primary-button" href="?page=1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+									<a class="primary-button" href="?page={{ Data.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+								{% else %}
+									<a class="primary-button" class="disabled"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span></a>
+									<a class="primary-button" class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></a>
+								{% endif %}
+
+								{% for i in Data.paginator.page_range %}
+								{% if Data.number == i %}
+									<a class="primary-button" class="active" style="background-color: white; color: #ee4266;"><span>{{ i }} <span class="sr-only">(current)</span></span></a>
+								{% else %}
+									<a class="primary-button" href="?page={{ i }}">{{ i }}</a>
+								{% endif %}
+								{% endfor %}
+
+								{% if Data.has_next %}
+									<a class="primary-button" href="?page={{ Data.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+									<a class="primary-button" href="?page={{ Data.paginator.num_pages }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+								{% else %}
+									<a class="primary-button" class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></a>
+									<a class="primary-button" class="disabled"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a>
+								{% endif %}
+							</ul>
+						{% endif %}
+					</div>
+					
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+	{% include 'pages/footer.html' %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'pages/user.html' %}
+{% block title %} Đổi mật khẩu {% endblock %}
+{% block main_content %}
+    <div class="section-title">
+        <h2 class="title" style="line-height: 25px;">Đổi mật khẩu</h2>
+    </div>
+    <div class="section-body" style="background-color: #353535;color: #ffffff;padding: 30px;">
+        <form action="" method="post">
+            {% csrf_token %}
+            <!-- {% for key,value in form.errors.items %}
+				{{value}}
+			{% endfor %} -->
+            {{form.as_p}}
+            <!-- <input type="hidden" name="next" value="/"> -->
+            <button type="submit" class="primary-button">Lưu</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function(){
+            $("#id_old_password, #id_new_password1, #id_new_password2").css({"color":"black", "width":"50%"}).attr({"class":"input"})
+            $("#id_old_password").attr({"placeholder":"Mật khẩu cũ"})
+            $("#id_new_password1").attr({"placeholder":"Mật khẩu mới"})
+            $("#id_new_password2").attr({"placeholder":"Nhập lại mật khẩu mới"})
+            $(".section-body label").css({"display":"none"})
+            $(".section-body ul").css({"color":"#ee4366"})
+        });
+    </script>
+{% endblock %}

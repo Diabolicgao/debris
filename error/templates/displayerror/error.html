@@ -1,0 +1,19 @@
+{% extends 'pages/header.html' %}
+{% block title %}Lỗi 404{% endblock %}
+{% block link %} 
+
+{% endblock %}
+{% block pageheader %} {% endblock %}
+{% block content %}
+    <br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h2 style="text-align: center;color: white;padding: 100px;background-color: #ee4266;">{{message}}</h2>
+            </div>    
+            <div class="col-md-4"></div>
+        </div>
+    </div>        
+    {% include 'pages/footer.html' %}
+{% endblock %}

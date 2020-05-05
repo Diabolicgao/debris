@@ -1,0 +1,448 @@
+{% load static %}
+<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div id="hot-post" class="row hot-post">
+				<div class="col-md-8 hot-post-left">
+					<!-- post -->
+					{% for event in Event %}
+						<div class="post post-thumb">
+							<a class="post-img" href="event/{{event.pk}}"><img src="{{event.image.url}}" alt=""></a>
+							<div class="post-body">
+								<div class="post-category">
+									<a href="event/{{event.category}}">{{event.category}}</a>
+								</div>
+								<h3 class="post-title title-lg"><a href="event/{{event.pk}}">{{event.title}}</a></h3>
+								<ul class="post-meta">
+									<li><a href="author.html"></a></li>
+									<li>{{event.time|date:"d-m-Y"}}</li>
+								</ul>
+							</div>
+						</div>
+					{% endfor %}
+					<!-- /post -->
+				</div>
+				<div class="col-md-4 hot-post-right">
+					<!-- post -->
+					{% for mgn in Marginal %}
+						<div class="post post-thumb">
+							<a class="post-img" href="event/{{mgn.pk}}"><img src="{{mgn.image.url}}" alt=""></a>
+							<div class="post-body">
+								<div class="post-category">
+									<a href="event/{{mgn.category}}">{{mgn.category}}</a>
+								</div>
+								<h3 class="post-title"><a href="event/{{mgn.pk}}">{{mgn.title}}</a></h3>
+								<ul class="post-meta">
+									<li><a href="author.html"></a></li>
+									<li>{{mgn.time|date:"d-m-Y"}}</li>
+								</ul>
+							</div>
+						</div>
+					{% endfor %}
+					<!-- /post -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-8">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title">
+								<h2 class="title">
+									<a href="{% url 'all' %}">Sản phẩm mới nhất <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+								</h2>
+							</div>
+						</div>
+						<!-- post -->
+						{% for post in PostBody %}
+							<div class="col-md-4">
+								<div class="post">
+									<a class="post-img" href="/category/{{post.pk}}"><img src="{{post.image.url}}" alt=""></a>
+									<div class="post-body">
+										<div class="post-category">
+											<a href="/category/{{post.category}}">{{post.category}}</a>
+										</div>
+										<h3 class="post-title short_name"><a href="/category/{{post.pk}}">{{post.title}}</a></h3>
+										<ul class="post-meta">
+											<li style="color: #ee4266;">{{post.price}} vnđ</li>
+											<li>{{post.time|date:'d-m-Y'}}</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						<!-- /post -->
+					</div>
+					<!-- /row -->
+
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title">
+								<h2 class="title">
+                                    <a href="{% url 'custom' %}">Custom <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                </h2>
+							</div>
+						</div>
+                        <!-- post -->
+                        {% for cus in Custom %}
+							<div class="col-md-4">
+								<div class="post post-sm">
+									<a class="post-img" href="/category/{{cus.pk}}"><img src="{{cus.image.url}}" alt=""></a>
+									<div class="post-body">
+										<div class="post-category">
+											<a href="/category/{{cus.category}}">{{cus.category}}</a>
+										</div>
+										<h3 class="post-title title-sm short_name"><a href="/category/{{cus.pk}}">{{cus.title}}</a></h3>
+										<ul class="post-meta">
+											<li style="color: #ee4266;">{{cus.price}} vnđ</li>
+											<li>{{cus.time|date:'d-m-Y'}}</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                        {% endfor %}
+						<!-- /post -->
+					</div>
+					<!-- /row -->
+
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title">
+								<h2 class="title">
+                                    <a href="{% url 'cyberpunk' %}">CyberPunk <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                </h2>
+							</div>
+						</div>
+                        <!-- post -->
+                        {% for cp in CyberPunk %}
+							<div class="col-md-4">
+								<div class="post post-sm">
+									<a class="post-img" href="/category/{{cp.pk}}"><img src="{{cp.image.url}}" alt=""></a>
+									<div class="post-body">
+										<div class="post-category">
+											<a href="/category/{{cp.category}}">{{cp.category}}</a>
+										</div>
+										<h3 class="post-title title-sm short_name"><a href="/category/{{cp.pk}}">{{cp.title}}</a></h3>
+										<ul class="post-meta">
+											<li style="color: #ee4266;">{{cp.price}} vnđ</li>
+											<li>{{cp.time|date:'d-m-Y'}}</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                        {% endfor %}
+						<!-- /post -->
+					</div>
+					<!-- /row -->
+
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title">
+								<h2 class="title">
+                                    <a href="{% url 'brick' %}">Khác <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                </h2>
+							</div>
+						</div>
+                        <!-- post -->
+                        {% for other in Other %}
+							<div class="col-md-4">
+								<div class="post post-sm">
+									<a class="post-img" href="/category/{{other.pk}}"><img src="{{other.image.url}}" alt=""></a>
+									<div class="post-body">
+										<div class="post-category">
+											<a href="/category/{{other.category}}">{{other.category}}</a>
+										</div>
+										<h3 class="post-title title-sm short_name"><a href="/category/{{other.pk}}">{{other.title}}</a></h3>
+										<ul class="post-meta">
+											<li style="color: #ee4266;">{{other.price}} vnđ</li>
+											<li>{{other.time|date:'d-m-Y'}}</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                        {% endfor %}
+						<!-- /post -->
+					</div>
+					<!-- /row -->
+				</div>
+				<div class="col-md-4">
+					<!-- ad widget-->
+					<!-- <div class="aside-widget text-center">
+						<a href="#" style="display: inline-block;margin: auto;">
+							<img class="img-responsive" src="{% static './img/ad-3.jpg' %}" alt="">
+						</a>
+					</div> -->
+					<!-- /ad widget -->
+
+					<!-- social widget -->
+					<div class="aside-widget">
+						<div class="section-title">
+							<h2 class="title">Liên kết</h2>
+						</div>
+						<div class="social-widget">
+							<ul>
+								<li>
+									<a href="https://www.facebook.com/profile.php?id=100012933991788" class="social-facebook" target="_blank" rel="noopener noreferrer">
+										<i class="fa fa-facebook"></i>
+										<span>21.2K<br>Followers</span>
+									</a>
+								</li>
+								<li>
+									<a class="social-twitter">
+										<i class="fa fa-twitter"></i>
+										<span>10.2K<br>Followers</span>
+									</a>
+								</li>
+								<li>
+									<a class="social-google-plus">
+										<i class="fa fa-google-plus"></i>
+										<span>5K<br>Followers</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- /social widget -->
+
+					<!-- category widget -->
+					<div class="aside-widget">
+						<div class="section-title">
+							<h2 class="title">Chủ đề phổ biến</h2>
+						</div>
+						<div class="category-widget">
+							<ul>
+								<li><a href="{% url 'custom' %}">Custom <span>{{Count_Custom}}</span></a></li>
+								<li><a href="{% url 'star_wars' %}">Star Wars <span>{{Count_Star_Wars}}</span></a></li>
+								<li><a href="{% url 'ninjago' %}">Ninjago <span>{{Count_Ninjago}}</span></a></li>
+								<li><a href="{% url 'cyberpunk' %}">CyberPunk <span>{{Count_CyberPunk}}</span></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /category widget -->
+
+					<!-- newsletter widget -->
+					<!-- <div class="aside-widget">
+						<div class="section-title">
+							<h2 class="title">Newsletter</h2>
+						</div>
+						<div class="newsletter-widget">
+							<form>
+								<p>Nec feugiat nisl pretium fusce id velit ut tortor pretium.</p>
+								<input class="input" name="newsletter" placeholder="Enter Your Email">
+								<button class="primary-button">Subscribe</button>
+							</form>
+						</div>
+					</div> -->
+					<!-- /newsletter widget -->
+
+					<!-- post widget -->
+					<div class="aside-widget">
+						<div class="section-title">
+							<h2 class="title">
+								<a >Đang giảm giá <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+							</h2>
+						</div>
+						<!-- post -->
+						{% for sale in Sale %}
+							<div class="post post-widget">
+								<a class="post-img" href="/category/{{sale.pk}}"><img src="{{sale.image.url}}" alt=""></a>
+								<div class="post-body">
+									<div class="post-category">
+										<a href="/category/{{sale.category}}">{{sale.category}}</a>
+									</div>
+									<h3 class="post-title short_name"><a href="/category/{{sale.pk}}">{{sale.title}}</a></h3>
+									<p>{{sale.time | date:"d-m-Y"}}</p>
+								</div>
+							</div>
+						{% endfor %}
+						<!-- /post -->
+					</div>
+					<!-- /post widget -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- ad -->
+				<!-- <div class="col-md-12 section-row text-center">
+					<a href="#" style="display: inline-block;margin: auto;">
+						<img class="img-responsive" src="{% static './img/ad-2.jpg' %}" alt="">
+					</a>
+				</div> -->
+				<!-- /ad -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Sản phẩm ngẫu nhiên</h2>
+					</div>
+					<!-- post -->
+					<!-- <div class="post">
+						<a class="post-img" href="blog-post.html"><img src="{% static './imgs/love.jpg' %}" alt=""></a>
+						<div class="post-body">
+							<div class="post-category">
+								<a href="category.html">Fashion</a>
+								<a href="category.html">Lifestyle</a>
+							</div>
+							<h3 class="post-title"><a href="blog-post.html">Postea senserit id eos, vivendo periculis ei qui</a></h3>
+							<ul class="post-meta">
+								<li><a href="author.html">John Doe</a></li>
+								<li>20 April 2018</li>
+							</ul>
+						</div>
+					</div> -->
+					<!-- /post -->
+				</div>
+			</div>
+			<!-- /row -->
+
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-4">
+					<!-- post -->
+						{% for all in All %}
+							<div class="post post-widget">
+								<a class="post-img" href="/category/{{all.pk}}"><img src="{{all.image.url}}" alt=""></a>
+								<div class="post-body">
+									<div class="post-category">
+										<a href="/category/{{all.category}}">{{all.category}}</a>
+									</div>
+									<h3 class="post-title short_name"><a href="/category/{{all.pk}}">{{all.title}}</a></h3>
+									<small>{{all.time|date:'d-m-Y'}}</small>
+								</div>
+							</div>
+						{% endfor %}
+					<!-- /post -->
+				</div>
+				<div class="col-md-4">
+					<!-- post -->
+						{% for all in All2 %}
+							<div class="post post-widget">
+								<a class="post-img" href="/category/{{all.pk}}"><img src="{{all.image.url}}" alt=""></a>
+								<div class="post-body">
+									<div class="post-category">
+										<a href="/category/{{all.category}}">{{all.category}}</a>
+									</div>
+									<h3 class="post-title short_name"><a href="/category/{{all.pk}}">{{all.title}}</a></h3>
+									<small>{{all.time|date:'d-m-Y'}}</small>
+								</div>
+							</div>
+						{% endfor %}
+					<!-- /post -->
+				</div>
+				<div class="col-md-4">
+					<!-- post -->
+						{% for all in All3 %}
+							<div class="post post-widget">
+								<a class="post-img" href="/category/{{all.pk}}"><img src="{{all.image.url}}" alt=""></a>
+								<div class="post-body">
+									<div class="post-category">
+										<a href="/category/{{all.category}}">{{all.category}}</a>
+									</div>
+									<h3 class="post-title short_name"><a href="/category/{{all.pk}}">{{all.title}}</a></h3>
+									<small>{{all.time|date:'d-m-Y'}}</small>
+								</div>
+							</div>
+						{% endfor %}
+					<!-- /post -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-8">
+					<!-- post -->
+					{% for notify in Notify %}
+						<div class="post post-row">
+							<a class="post-img" href="/event/{{notify.pk}}"><img src="{{notify.image.url}}" alt=""></a>
+							<div class="post-body">
+								<div class="post-category">
+									<a href="/event/{{notify.category}}">Thông báo</a>
+								</div>
+								<h3 class="post-title"><a href="/event/{{notify.pk}}">{{notify.title}}</a></h3>
+								<ul class="post-meta">
+									<li>{{notify.time|date:"d-m-Y"}}</li>
+								</ul>
+							</div>
+						</div>
+					{% endfor %}
+					<!-- /post -->
+					<div class="section-row loadmore text-center">
+						<a href="{% url 'notify' %}" class="primary-button">Xem thêm</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<!-- galery widget -->
+					<div class="aside-widget">
+						<div class="section-title">
+							<h2 class="title">Instagram</h2>
+						</div>
+						<div class="galery-widget">
+							<ul>
+								{% for ig in IG %}
+									<li><a><img src="{{ig.image.url}}" alt=""></a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					<!-- /galery widget -->
+
+					<!-- Ad widget -->
+					<!-- <div class="aside-widget text-center">
+						<a href="#" style="display: inline-block;margin: auto;">
+							<img class="img-responsive" src="{% static './img/ad-1.jpg' %}" alt="">
+						</a>
+					</div> -->
+					<!-- /Ad widget -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->

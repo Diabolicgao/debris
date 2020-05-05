@@ -1,0 +1,139 @@
+{% extends 'pages/header.html' %}
+{% load static %}
+{% block title %}Giỏ hàng{% endblock %}
+{% block link %} 
+    <link rel="stylesheet" href="{% static 'css/cart2.css' %}">
+    <style>
+        .center {
+            text-align: center;
+        }
+        label[for="id_payments"] {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block pageheader %} {% endblock %}
+{% block content %}
+    <!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-7">
+					<div class="section-row">
+						<div class="section-title">
+							<h2 class="title">Giỏ hàng <i class="fa fa-caret-left" aria-hidden="true"></i> {{count_cart}} <i class="fa fa-caret-right" aria-hidden="true"></i></h2>
+                        </div>
+                        {% if all %}
+                            <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm...">
+                            <br>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Tên sản phẩm</th>
+                                    <th class="center">Số lượng</th>
+                                    <th class="center">Giá(vnđ)</th>
+                                    <th class="center">Xóa</th>
+                                </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                {% for all_cart in all %}
+                                <tr>
+                                    <td><a href="{{all_cart.item}}">{{all_cart.item}}</a></td>
+                                    <td class="center">{{all_cart.amount}}</td>
+                                    <td class="center" style="color:#ee4266;">{{all_cart.price}}</td>
+                                    <td class="center"><a href="{{all_cart.pk}}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                        <p style="padding: 100px;background-color: #ee4266;color: white;text-align: center;margin: 0 auto;border-radius: 5px;font-size: 20px;">
+                            <strong>Giỏ hàng trống !</strong>
+                        </p>
+                        {% endif %} 
+					</div>
+                </div>
+                {% if all %}
+				<div class="col-md-5">
+					<div class="section-row">
+						<div class="section-title">
+							<h2 class="title">Thông tin vận chuyển <i class="fa fa-caret-left" aria-hidden="true"></i> Mặc định <i class="fa fa-caret-right" aria-hidden="true"></i></h2>
+                        </div>
+
+                        {% if myUser.info.all %}
+                            {% for i in info %}
+                                <p><strong>Số điện thoại : </strong>{{i.phonenumber}}</p>
+                                <p><strong>Địa chỉ : </strong>{{i.address}}</p>
+                                <a href="{% url 'address' %}" class="primary-button">Thay đổi</a>
+                            {% endfor %}
+                        {% else %}
+                            <p><strong>Chưa có địa chỉ nào !</strong></p>
+                            <a href="{% url 'add_address' %}" class="primary-button">Thêm địa chỉ</a>
+                            <br><br>
+                            <div style="display: none;background-color: #ee4266;color: white;" id="show_alert" class="alert alert-dismissible fade in">
+                                <a style="color: white;" href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <p><strong>Bạn phải thêm địa chỉ để đặt mua !</strong></p>
+                            </div>        
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-title">
+                                <h2 class="title">Hình thức thanh toán</h2>
+                            </div>
+                            <form action="{% url 'cart' %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <label class="cus-cb">Thanh toán khi nhận hàng
+                                    {{formOrder.as_p}}
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                </label>
+                            <div class="section-title">
+                                <h2 class="title">Đặt mua</h2>
+                            </div>
+                            <div class="pull-right" style="text-align: right;">
+                                <p class="pull-left"><i>Tổng : </i></p><p><span style="font-size: 20px;color: #ee4266;">{{n}} đ</span></p>
+                                <p class="pull-left"><i>Phí vận chuyển : </i></p><p><span style="font-size: 20px;color: #ee4266;">{{Charge}} đ</span></p>
+                                <div class="section-title"><br></div>
+                                <p><i>Thành tiền : </i><span style="font-size: 30px;color: #ee4266;">{{Sum}} đ</span></p>
+                                <br>
+                                {% if myUser.info.all %}
+                                <button type="submit" class="primary-button">Đặt mua</button>
+                                {% else %}
+                                    <button id="alert" type="button" class="primary-button">Đặt mua</button>
+                                    
+                                {% endif %}
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                {% endif %}
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+    {% include 'pages/footer.html' %}
+{% endblock %}
+{% block js %}
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $("#id_payments").attr({"checked":"checked"})
+            $("#alert").click(function(){
+                $("#show_alert").show();
+            });
+        });
+    </script>
+{% endblock %}

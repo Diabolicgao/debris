@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% load static %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>{% block title %}Đăng nhập{% endblock %}</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CMuli:400,700" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'css/scrollbars.css' %}" />
+	<link rel="shortcut icon" type="image/png" href="{% static 'imgs/favicon4.png' %}"/>
+	<link rel="stylesheet" href="{% static 'css/sign_in_up.css' %}">
+	<link rel="stylesheet" href="{% static 'css/add_style7.css' %}">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	
+</head>
+
+<body>
+	<!-- HEADER -->
+	<header id="header">
+		<!-- NAV -->
+		<div id="nav">
+			<!-- Top Nav -->
+			<div id="nav-top">
+				<div class="container">
+					<!-- social -->
+					<ul class="nav-social">
+						<li><a href="https://www.facebook.com/groups/465255677005746/?ref=bookmarks" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook"></i></a></li>
+						<li><a><i class="fa fa-twitter"></i></a></li>
+						<li><a><i class="fa fa-google-plus"></i></a></li>
+						<li><a><i class="fa fa-instagram"></i></a></li>
+					</ul>
+					<!-- /social -->
+
+					<!-- logo -->
+					<div class="nav-logo">
+						<a href="/" class="logo"><img src="{% static './imgs/logo4.png' %}" alt=""></a>
+					</div>
+					<!-- /logo -->
+
+					<!-- search & aside toggle -->
+					<div class="nav-btns">
+                        {% if user.username %} 
+							<a class="primary-button-new btn1" href="#">{{user.username}}</a> <a class="primary-button-new btn2" href="{% url 'sign_out' %}" style="margin-right: 20px;"><i class="fa fa-sign-out" aria-hidden="true"></i></a> 
+						{% else %}
+							<a style="margin-right: 30px;" href="{% url 'sign_in' %}" data-toggle="tooltip" title="Đăng nhập" data-placement="bottom"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+						{% endif %}
+						{% if user.username %}
+							<a style="margin-right: 15px;" href="{% url 'cart' %}" data-toggle="tooltip" title="Giỏ hàng" data-placement="bottom"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+						{% else %}
+							<a style="margin-right: 15px;" href="{% url 'sign_in' %}" data-toggle="tooltip" title="Giỏ hàng" data-placement="bottom"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+						{% endif %}
+						<button class="search-btn"><i class="fa fa-search"></i></button>
+						<button class="aside-btn"><i class="fa fa-bars"></i></button>
+						
+						<div id="nav-search">
+							<form>
+								<input class="input" name="search" placeholder="Nhập sản phẩm cần tìm kiếm...">
+							</form>
+							<button class="nav-close search-close">
+								<span></span>
+							</button>
+						</div>
+					</div>
+					<!-- /search & aside toggle -->
+				</div>
+			</div>
+            <!-- /Top Nav -->
+        </div>
+		<!-- /NAV -->
+	</header>
+    <!-- /HEADER -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container" id="content">
+        <div class="row">
+			<div class="col-md-3"></div>
+            <div class="col-md-6">
+				<div id="signin">
+					<center>
+						<form action="" method="post">
+							{% csrf_token %}
+							{% for key,value in form.errors.items %}
+								{{value}}
+							{% endfor %}
+							<p class="int"><label><i class="fa fa-user-o" aria-hidden="true" style="font-size: 20px;margin-right: 10px;"></i></label> {{form.username}}</p>
+							<p class="int"><label><i id="eye" style="font-size: 25px;margin-right: 10px;" class="fa fa-lock" aria-hidden="true"></i></label> {{form.password}}</p>
+							<!-- <input type="hidden" name="next" value="/"> -->
+							<br>
+							<input class="primary-button" type="submit" value="Đăng nhập"> 
+							<p>---hoặc---</p>
+							<a href="{% url 'sign_up' %}?next=/" class="primary-button-new btn2">Đăng kí</a>
+						</form>
+					</center>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <!-- Aside Nav -->
+		<div id="nav-aside">
+			<ul class="nav-aside-menu">
+				<li><a href="/">Home</a></li>
+				<li class="has-dropdown"><a>Danh mục</a>
+					<ul class="dropdown">
+						<li><a href="#">Loại sản phẩm</a></li>
+						<li><a href="{% url 'all' %}">Chủ đề</a></li>
+						<li><a href="{% url 'event' %}">Event</a></li>
+					</ul>
+				</li>
+				<li><a href="{% url 'about' %}">Về chúng tôi</a></li>
+				<li><a href="{% url 'contact' %}">Liên hệ</a></li>
+				<li><a href="#">Quảng cáo</a></li>
+			</ul>
+			<button class="nav-close nav-aside-close"><span></span></button>
+		</div>
+	<!-- /Aside Nav -->
+
+
+    <!-- jQuery Plugins -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+	<script>
+		$(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip();   
+			$('#id_username').attr("placeholder", 'Tài khoản')
+			$('#id_password').attr("placeholder", 'Mật khẩu')
+		});
+	</script>
+</body>
+</html>

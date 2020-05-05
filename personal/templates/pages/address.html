@@ -1,0 +1,40 @@
+{% extends 'pages/user.html' %}
+{% block title %} Địa chỉ {% endblock %}
+
+{% block main_content %}
+    <div class="section-title">
+        <h2 class="title" style="line-height: 25px;">Địa chỉ</h2>
+    </div>
+    <div class="section-body" style="background-color: #353535;color: #ffffff;padding: 30px;">
+        <table class="table">
+            <tbody>
+                {% if all_address %}
+                {% for i in all_address %}
+                    <tr>
+                            <td style="border: none;width: 30%;"><b>Địa chỉ :</b></td>
+                            <td style="border: none;width: 35%;">{{i.address}}</td>
+                        {% if i.default %}
+                            <td style="border: none;"><strong>Mặc định</strong></td>
+                        {% else %}
+                            <td style="border: none;"></td>
+                        {% endif %}
+                            <td style="border: none;"><a href="update_address/{{i.pk}}" class="primary-button">Sửa</a></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;width: 30%;"><b>Số điện thoại :</b></td>
+                        <td style="border: none;">{{i.phonenumber}}</td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;"><a href="delete_address/{{i.pk}}" class="primary-button">Xóa</a></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;padding-bottom: 30px;"></td>
+                    </tr>
+                {% endfor %}
+                {% else %}
+                    <p><strong>Chưa có địa chỉ nào !</strong></p>
+                {% endif %}
+            </tbody>
+          </table>
+        <a href="{% url 'add_address' %}" class="primary-button">Thêm địa chỉ</a>
+    </div>
+{% endblock %}

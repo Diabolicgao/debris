@@ -1,0 +1,26 @@
+{% extends 'pages/user.html' %}
+{% block title %} Thêm địa chỉ {% endblock %}
+{% block main_content %}
+    <div class="section-title">
+        <h2 class="title" style="line-height: 25px;">Thêm địa chỉ</h2>
+    </div>
+    <div class="section-body" style="background-color: #353535;color: #ffffff;padding: 30px;">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p><b>Địa chỉ : </b><span class="ct">{{form.address}}</span></p>
+            <br><br><br>
+            <p><b>Số điện thoại : </b><span class="ct">{{form.phonenumber}}</span></p>
+            <br>
+            <button type="submit" class="primary-button">Thêm</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function(){
+            $("#id_phonenumber").attr({"class":"input", "placeholder":"Số điện thoại"}).css({"color" : "black"})
+            $("#id_address").attr({"class":"input", "placeholder":"Địa chỉ"}).css({"color" : "black"})
+        });
+    </script>
+{% endblock %}

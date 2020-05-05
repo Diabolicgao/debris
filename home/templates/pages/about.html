@@ -1,0 +1,62 @@
+{% extends 'pages/header.html' %}
+
+{% block title %}Về chúng tôi{% endblock %}
+{% block link %} 
+
+{% endblock %}
+{% block pageheader %}
+	<!-- PAGE HEADER -->
+		<div class="page-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10 text-center">
+						
+						<h1 class="text-uppercase">Về chúng tôi</h1>
+						<p class="lead">Luôn tạo ra những sản phẩm tốt nhất theo sở thích và mong muốn của người dùng . Chúng tôi nhận thiết kế những sản phẩm theo yêu cầu . <strong><a href="{% url 'contact' %}" style="color: white;">Liên hệ</a></strong> ngay với chúng tôi.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- /PAGE HEADER -->
+{% endblock %}
+
+{% block content %}
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-5">
+					<div class="section-row">
+						<div class="section-title">
+							<h2 class="title">Câu chuyện của chúng tôi</h2>
+						</div>
+						<p>Việc Moc những sản phẩm bằng Lego cũng là một hướng chơi riêng cho những người ưa thích sáng tạo,thích tạo ra những công trình theo ý mình.Nhưng...ý tưởng...nguyên liệu có thể sẽ không đủ cho bạn tạo ra những công trình cho riêng mình.Debris được tạo ra để giúp bạn chuyên đó.</p>
+						<blockquote class="blockquote">
+							<p>Hồi còn trẻ tôi hay mua Lego chơi, nhưng toàn phá tan ra và tự lắp những sản phẩm do mình tưởng tượng ra.Và...nhận ra rằng nó rất đẹp, không thua kém gì những sản phẩm trong sách hướng dẫn (thậm chí còn đẹp hơn).Mọi người thường hay khoe bạn những bộ Lego họ mua được...nhưng, chẳng phải nếu lắp theo sách hướng dẫn thì ai cũng làm được hay sao =)</p>
+							<footer class="blockquote-footer">Dương Quốc Việt</footer>
+						</blockquote>
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="section-row">
+						<div class="section-title">
+							<h2 class="title">Tầm nhìn trong tương lai</h2>
+						</div>
+						<p>Xây dựng và hỗ trợ cho cộng đồng những người chơi Moc các sản phẩm bằng Lego.</p>
+						<p>Chúng tôi luôn tạo ra những khuyến mãi, sự kiện để khuyến khích người chơi theo đuổi sở thích của riêng mình.</p>
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+	{% include 'pages/footer.html' %}
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'pages/header.html' %}
+{% load static %}
+{% block title %} Sản phẩm {% endblock %}
+{% block link %} 
+	<link rel="stylesheet" href="{% static 'css/category4.css' %}"> 
+{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block content %} 
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+				<div class="col-md-2">
+					<!-- ad widget-->
+					<!-- <div class="aside-widget text-center">
+						<a href="#" style="display: inline-block;margin: auto;">
+							<img class="img-responsive" src="{% static './img/ad-3.jpg' %}" alt="">
+						</a>
+					</div> -->
+					<!-- /ad widget -->
+
+					<!-- category widget -->
+					<div class="aside-widget">
+						<div class="section-title">
+							<h2 class="title">Chủ đề</h2>
+						</div>
+						<div class="category-widget">
+							<ul>
+								<li><a href="{% url 'all' %}">Tất cả <span>{{All}}</span></a></li>
+								<li><a href="{% url 'city' %}">City <span>{{city}}</span></a></li>
+								<li><a href="{% url 'cyberpunk' %}">CyberPunk <span>{{cyberpunk}}</span></a></li>
+								<li><a href="{% url 'custom' %}">Custom <span>{{custom}}</span></a></li>
+								<li><a href="{% url 'ninjago' %}">Ninjago <span>{{ninjago}}</span></a></li>
+								<li><a href="{% url 'star_wars' %}">Star Wars <span>{{star_wars}}</span></a></li>
+								<li><a href="{% url 'dc' %}">DC <span>{{dc}}</span></a></li>
+								<li><a href="{% url 'marvel' %}">Marvel <span>{{marvel}}</span></a></li>
+								<li><a href="{% url 'overwatch' %}">Overwatch <span>{{overwatch}}</span></a></li>
+								<li><a href="{% url 'vehicle' %}">Xe,Máy bay <span>{{vehicle}}</span></a></li>
+								<li><a href="{% url 'technic' %}">Technic <span>{{technic}}</span></a></li>
+								<li><a href="{% url 'animal' %}">Động vật <span>{{animal}}</span></a></li>
+								<li><a href="{% url 'dragon' %}">Rồng <span>{{dragon}}</span></a></li>
+								<li><a href="{% url 'castle' %}">Lâu đài <span>{{castle}}</span></a></li>
+								<li><a href="{% url 'fantasy' %}">Fantasy <span>{{fantasy}}</span></a></li>
+								<div id="call3">
+									<li>
+										<a>Khác <span><i class="fa fa-caret-down" aria-hidden="true"></i></span></a>
+										<ul>
+											<li class="rep3"><a href="{% url 'item' %}"><small>Item</small> <span>{{item}}</span></a></li>
+											<li class="rep3"><a href="{% url 'brick' %}"><small>Gạch</small> <span>{{brick}}</span></a></li>
+										</ul>
+									</li>
+								</div>
+							</ul>
+						</div>
+					</div>
+					<!-- /category widget -->
+
+					<!-- Ad widget -->
+					<!-- <div class="aside-widget text-center">
+						<a href="#" style="display: inline-block;margin: auto;">
+							<img class="img-responsive" src="{% static './img/ad-1.jpg' %}" alt="">
+						</a>
+					</div> -->
+					<!-- /Ad widget -->
+				</div>
+				
+				<div class="col-md-10">
+					<div class="row">
+						{% if Data %}
+							{% for all in Data %}
+								<!-- post -->
+								<div class="col-md-3">
+									<div class="post">
+										<a class="post-img" href="/category/{{all.pk}}"><img src="{{all.image.url}}" alt=""></a>
+										<div class="post-body">
+											<div class="post-category">
+												<a href="/category/{{all.category}}">{{all.category}}</a>
+											</div>
+											<h3 class="post-title"><a href="/category/{{all.pk}}">{{all.title}}</a></h3>
+											<ul class="post-meta">
+												<li style="color: #ee4266;">{{all.price}} vnđ</li>
+												<li>{{all.time|date:"d-m-Y"}}</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!-- /post -->
+								<!-- <div class="clearfix visible-md visible-lg"></div> -->
+							{% endfor %}
+						{% else %}
+							<br><br>
+							<p style="padding: 100px;background-color: #ee4266;color: white;text-align: center;width: 80%;margin: 0 auto;border-radius: 5px;">
+								<strong>Hiện chưa có sản phẩm !</strong>
+							</p>
+						{% endif %}
+					</div>
+
+					<div class="section-row loadmore text-center">
+						{% if Data.has_other_pages %}
+							<ul class="pagination">
+								{% if Data.has_previous %}
+									<a class="primary-button" href="?page=1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+									<a class="primary-button" href="?page={{ Data.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+								{% else %}
+									<a class="primary-button" class="disabled"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span></a>
+									<a class="primary-button" class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></a>
+								{% endif %}
+
+								{% for i in Data.paginator.page_range %}
+								{% if Data.number == i %}
+									<a class="primary-button" class="active" style="background-color: white; color: #ee4266;"><span>{{ i }} <span class="sr-only">(current)</span></span></a>
+								{% else %}
+									<a class="primary-button" href="?page={{ i }}">{{ i }}</a>
+								{% endif %}
+								{% endfor %}
+
+								{% if Data.has_next %}
+									<a class="primary-button" href="?page={{ Data.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+									<a class="primary-button" href="?page={{ Data.paginator.num_pages }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+								{% else %}
+									<a class="primary-button" class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></a>
+									<a class="primary-button" class="disabled"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a>
+								{% endif %}
+							</ul>
+						{% endif %}
+					</div>
+					
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+	{% include 'pages/footer.html' %}
+{% endblock %}
+
+{% block js %}
+	<script>
+		$(document).ready(function(){
+			$('li').click(function(){
+				this.css("color", "#ee4266")
+			})
+			$("#call3").click(function(){
+				$(".rep3").toggle("slow");
+			})
+		});
+	</script>
+{% endblock %}
+

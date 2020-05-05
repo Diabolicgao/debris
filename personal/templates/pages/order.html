@@ -1,0 +1,120 @@
+{% extends 'pages/user.html' %}
+{% block title %} Đơn mua {% endblock %}
+{% block main_content %}
+    <div class="section-title">
+        <h2 class="title" style="line-height: 25px;">Đang giao hàng</h2>
+    </div>
+    <div class="section-body" style="background-color: #353535;color: #ffffff;padding: 30px;">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th style="text-align: center;">Số lượng</th>
+                  <th style="text-align: right;">Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in all_order %}
+                    {% for j in i.cartorder.all %}
+                        <tr>
+                            <td style="border: none;width: 50%;">{{j.item}}</td>
+                            <td style="border: none;width: 20%;text-align: center;">x{{j.amount}}</td>
+                            <td style="border: none;width: 30%;text-align: right;color: #ee4266;">{{j.price}} đ</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <p style="font-size: 20px;text-align: right;">Tổng =</p>
+                            <br>
+                            <a href="" class="primary-button">Chi tiết</a>
+                        </td>
+                        <td>
+                            <p style="color: #ee4266;font-size: 20px;">{{i.sum_money}} + {{i.tran_cost}} (đ)</p>
+                            <br>
+                            <button type="button" class="primary-button" data-toggle="modal" data-target="#myModal">Hủy đơn</button>
+                            <br><br><br><br>
+                        </td>
+                    </tr>
+                    <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Hủy đơn hàng</h4>
+                                </div>
+                                <div class="modal-body">
+                                <p style="color: black;"><strong>Bạn có chắc là muốn hủy đơn hàng này không !</strong></p>
+                                </div>
+                                <div class="modal-footer">
+                                <a href="delete_order/{{i.pk}}" class="primary-button">Có, tôi muốn hủy đơn</a>
+                                <button type="button" class="primary-button" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    <!-- /Modal -->
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="section-title">
+        <h2 class="title" style="line-height: 25px;">Đã nhận hàng</h2>
+    </div>
+    <div class="section-body" style="background-color: #353535;color: #ffffff;padding: 30px;">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th style="text-align: center;">Số lượng</th>
+                  <th style="text-align: right;">Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in exchange_scf %}
+                    {% for j in i.cartorder.all %}
+                        <tr>
+                            <td style="border: none;width: 50%;">{{j.item}}</td>
+                            <td style="border: none;width: 20%;text-align: center;">x{{j.amount}}</td>
+                            <td style="border: none;width: 30%;text-align: right;color: #ee4266;">{{j.price}} đ</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td style="border: none;"><br></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="section-title">
+        <h2 class="title" style="line-height: 25px;">Đã hủy</h2>
+    </div>
+    <div class="section-body" style="background-color: #353535;color: #ffffff;padding: 30px;">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th style="text-align: center;">Số lượng</th>
+                  <th style="text-align: right;">Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in cancel %}
+                    {% for j in i.cartorder.all %}
+                        <tr>
+                            <td style="border: none;width: 50%;">{{j.item}}</td>
+                            <td style="border: none;width: 20%;text-align: center;">x{{j.amount}}</td>
+                            <td style="border: none;width: 30%;text-align: right;color: #ee4266;">{{j.price}} đ</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td style="border: none;"><br><br></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

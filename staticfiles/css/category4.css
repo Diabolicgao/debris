@@ -1,0 +1,18 @@
+.post-title {
+    white-space: nowrap; 
+    width: 150px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.rep3 {
+    display: none;
+}
+
+small {
+    margin-left: 20px;
+}
+
+#call3 {
+    cursor: pointer;
+}

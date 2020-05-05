@@ -1,0 +1,125 @@
+{% extends 'pages/header.html' %}
+
+{% block title %}Liên hệ{% endblock %}
+{% block link %} 
+
+{% endblock %}
+{% block pageheader %}
+	<!-- PAGE HEADER -->
+	<div class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10 text-center">
+					<h1 class="text-uppercase">Liên hệ</h1>
+					<p class="lead">Liên hệ ngay với chúng tôi để nhận được những trợ giúp, thông tin mới nhất, sự kiện, khuyến mãi...và cả quà tặng nữa.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /PAGE HEADER -->
+{% endblock %}
+
+{% block content %}
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-8">
+					<div class="section-row">
+						<div class="section-title">
+							<h2 class="title">Thông tin liên hệ</h2>
+						</div>
+						<p>Để có được những thông tin mới nhất, liên hệ với chúng tôi theo thông tin dưới đây :</p>
+						<ul class="contact">
+							<li><i class="fa fa-phone"></i>0383.794.727</li>
+							<li><i class="fa fa-envelope"></i> <a href="#">cp15_vietdq@gmail.com</a></li>
+							<li><i class="fa fa-map-marker"></i>Ha Noi-Vietnamese</li>
+						</ul>
+					</div>
+
+					<div class="section-row">
+						<div class="section-title">
+							<h2 class="title">Gửi mail cho chúng tôi</h2>
+						</div>
+						<form>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<input class="input" type="email" name="email" placeholder="Email">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input class="input" type="text" name="subject" placeholder="Subject">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<textarea class="input" name="message" placeholder="Message"></textarea>
+									</div>
+									<button class="primary-button">Gửi</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<!-- social widget -->
+					<div class="aside-widget">
+						<div class="section-title">
+							<h2 class="title">Liên kết</h2>
+						</div>
+						<div class="social-widget">
+							<ul>
+								<li>
+									<a href="https://www.facebook.com/profile.php?id=100012933991788" class="social-facebook" target="_blank" rel="noopener noreferrer">
+										<i class="fa fa-facebook"></i>
+										<span>21.2K<br>Followers</span>
+									</a>
+								</li>
+								<li>
+									<a class="social-twitter">
+										<i class="fa fa-twitter"></i>
+										<span>10.2K<br>Followers</span>
+									</a>
+								</li>
+								<li>
+									<a class="social-google-plus">
+										<i class="fa fa-google-plus"></i>
+										<span>5K<br>Followers</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- /social widget -->
+
+					<!-- newsletter widget -->
+					<div class="aside-widget">
+						<div class="section-title">
+							<h2 class="title">Gmail</h2>
+						</div>
+						<div class="newsletter-widget">
+							<form>
+								<p>Gửi gmail của bạn cho chúng tôi để nhận được những thông tin mới nhất.</p>
+								<input class="input" name="newsletter" placeholder="Enter Your Email">
+								<button class="primary-button">Gửi</button>
+							</form>
+						</div>
+					</div>
+					<!-- /newsletter widget -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+	{% include 'pages/footer.html' %}
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

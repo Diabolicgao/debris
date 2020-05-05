@@ -1,0 +1,61 @@
+{% extends 'pages/header.html' %}
+{% load static %}
+{% block title %}Giỏ hàng{% endblock %}
+{% block link %} 
+    <style>
+        .secondary-button {
+            width: 100%;
+            border-radius: 0px;
+            line-height: 30px;
+        }
+        .section-body .ct {
+            float: right;
+            text-align: left;
+            width: 70%;
+        }
+    </style>
+{% endblock %}
+{% block pageheader %} {% endblock %}
+{% block content %}
+
+    <!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                <div class="col-md-3">
+					<div class="section-row">
+						<div class="section-title">
+							<h2 class="title"></h2>
+                        </div>
+                        <div class="section-body" style="margin-top: 22px;">
+                            <a href="{% url 'info' %}" class="secondary-button">Thông tin cá nhân</a>
+                            <br>
+                            <a href="{% url 'address' %}" class="secondary-button">Địa chỉ</a>
+                            <br>
+                            <a href="{% url 'order' %}" class="secondary-button">Đơn mua</a>
+                            <br>
+                            <a href="{% url 'change_pass' %}" class="secondary-button">Đổi mật khẩu</a>
+                        </div>
+                    </div>
+				</div>
+				<div class="col-md-9">
+					<div class="section-row">
+						{% block main_content %}
+
+                        {% endblock %}  
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+{% include 'pages/footer.html' %}
+{% endblock %}
+{% block js %}
+    
+{% endblock %}
